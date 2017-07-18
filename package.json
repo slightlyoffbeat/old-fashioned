@@ -22,6 +22,7 @@
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "gh-pages": "^1.0.0",
     "glob": "7.1.2",
     "next": "^3.0.1-beta.16",
     "node-sass": "^4.4.0",
