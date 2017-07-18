@@ -23,7 +23,10 @@ $ npm run build
 ```
 $ npm run deploy
 ```
-      
+
+## Other
+if you are publishing to a static site, set your production URL in variables.js
+
 ## License
 Full license [here](LICENSE)
 
