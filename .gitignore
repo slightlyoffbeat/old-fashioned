@@ -17,4 +17,5 @@ test/**/out
 .DS_Store
 
 # other
+.env
 haters

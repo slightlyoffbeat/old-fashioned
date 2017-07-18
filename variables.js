@@ -1,15 +1,5 @@
-/* eslint-disable import/prefer-default-export */
+const isProd = process.env.NODE_ENV === 'production';
 
-// VARIABLES
-const prodUrl = 'https://slightlyoffbeat.github.io/old-fashioned';
-
-
-const getBaseUrl = () => {
-  const env = process.env.NODE_ENV;
-  if (env === 'production') {
-    return prodUrl;
-  }
-  return '';
+module.exports = {
+  prodUrl: isProd ? 'https://slightlyoffbeat.github.io/old-fashioned' : '',
 };
-
-export const baseUrl = getBaseUrl();

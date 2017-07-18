@@ -1,6 +1,8 @@
 const path = require('path');
 const glob = require('glob');
 
+const variables = require('./variables');
+
 module.exports = {
   webpack: (config, { dev }) => { // eslint-disable-line no-unused-vars
     config.module.rules.push(
@@ -10,13 +12,11 @@ module.exports = {
         options: {
           name: 'dist/[path][name].[ext]',
         },
-      }
-    ,
+      },
       {
         test: /\.css$/,
         use: ['babel-loader', 'raw-loader', 'postcss-loader'],
-      }
-    ,
+      },
       {
         test: /\.s(a|c)ss$/,
         use: ['babel-loader', 'raw-loader', 'postcss-loader',
@@ -38,4 +38,6 @@ module.exports = {
     '/': { page: '/' },
     '/about': { page: '/about' },
   }),
+
+  assetPrefix: variables.prodUrl,
 };
