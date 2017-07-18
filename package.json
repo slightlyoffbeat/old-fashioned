@@ -8,7 +8,8 @@
     "dev": "next dev",
     "build": "next build && next export -o dist",
     "start": "next start",
-    "deploy": "npm run build && touch dist/.nojekyll && gh-pages -d dist"
+    "deploy": "npm run build && touch dist/.nojekyll && gh-pages -d dist --dotfiles",
+    "meh": "gh-pages --help"
   },
   "author": "Dan Brown",
   "license": "ISC",
