@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 
 module.exports = {
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev }) => { // eslint-disable-line no-unused-vars
     config.module.rules.push(
       {
         test: /\.(css|scss)/,
