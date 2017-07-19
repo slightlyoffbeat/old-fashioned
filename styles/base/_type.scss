@@ -50,7 +50,12 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
   font-family: $header-font-family;
   font-weight: $base-bold-weight;
   line-height: $base-line-height;
@@ -99,6 +104,7 @@ a {
   color: $base-link-color;
   cursor: pointer;
   text-decoration: none;
+  transition: color $base-time $base-ease;
 
   &:hover,
   &:focus {

@@ -6,18 +6,6 @@
 // Some bootstrap-style helper classes included for rapid prototyping
 
 
-@import '../../node_modules/susy/sass/susy';
-@import '../../node_modules/mappy-breakpoints/mappy-breakpoints';
-
-
-// Set up breakpoints
-$breakpoints: (
-  xsmall:     450px,
-  small:      750px,
-  medium:     950px,
-  large:      1200px
-);
-
 // Susy Configuration
 $susy: (
   'columns': susy-repeat(12),

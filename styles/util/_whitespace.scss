@@ -25,8 +25,8 @@ EX: (assuming $whitespace = 12px)
 
 $whitespace: $unit;
 
-.m#{$i} {
-  @for $i from 0 through 12 {
+@for $i from 0 through 12 {
+  .m#{$i} {
     margin: $whitespace * $i;
   }
 
@@ -47,8 +47,8 @@ $whitespace: $unit;
   }
 
   .my#{$i} {
-    margin-bottom: $whitespace * $i;
     margin-top: $whitespace * $i;
+    margin-bottom: $whitespace * $i;
   }
 
   .mx#{$i} {
@@ -80,8 +80,8 @@ $whitespace: $unit;
   }
 
   .py#{$i} {
-    padding-bottom: $whitespace * $i;
     padding-top: $whitespace * $i;
+    padding-bottom: $whitespace * $i;
   }
 
   .px#{$i} {

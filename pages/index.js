@@ -3,7 +3,12 @@ import { prodUrl as baseUrl } from '../variables';
 
 export default () => (
   <Layout title="Old Fashioned | Home">
-    <div>Whiskey & Bitters & Sugar & Ice</div>
-    <img src={`${baseUrl}/static/img/sample.jpg`} alt="sample" />
+    <div className="container">
+      <div className="py4 col-md-8 col-md-offset-2">
+        <h1>Home Page</h1>
+        <div>Whiskey & Bitters & Sugar & Ice</div>
+        <img src={`${baseUrl}/static/img/sample.jpg`} alt="sample" />
+      </div>
+    </div>
   </Layout>
 );
