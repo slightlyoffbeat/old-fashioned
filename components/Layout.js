@@ -3,7 +3,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 // styles
-import stylesheet from 'styles/index.scss';
+import stylesheet from 'styles/style.scss';
 
 // Components
 import Header from '../components/Header';

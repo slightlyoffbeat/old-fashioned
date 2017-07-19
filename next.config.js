@@ -39,5 +39,5 @@ module.exports = {
     '/about': { page: '/about' },
   }),
 
-  // assetPrefix: variables.prodUrl,
+  assetPrefix: variables.prodUrl,
 };

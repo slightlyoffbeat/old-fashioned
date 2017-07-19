@@ -25,6 +25,7 @@
     "eslint-plugin-react": "^7.1.0",
     "gh-pages": "^1.0.0",
     "glob": "7.1.2",
+    "mappy-breakpoints": "^0.2.3",
     "next": "^3.0.1-beta.16",
     "node-sass": "^4.4.0",
     "normalize.css": "7.0.0",
@@ -34,7 +35,8 @@
     "raw-loader": "^0.5.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "susy": "^3.0.0"
   },
   "devDependencies": {
     "now": "^7.2.4"
