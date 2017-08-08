@@ -205,7 +205,7 @@ $susy: (
 @for $i from 1 through $_columns {
   .col-sm-offset-#{$i} {
     @include bp(small) {
-      margin-left: span($i) + gutter();
+      margin-left: span($i wide);
     }
   }
 }
@@ -215,7 +215,7 @@ $susy: (
 @for $i from 1 through $_columns {
   .col-md-offset-#{$i} {
     @include bp(medium) {
-      margin-left: span($i) + gutter();
+      margin-left: span($i wide);
     }
   }
 }
@@ -225,7 +225,7 @@ $susy: (
 @for $i from 1 through $_columns {
   .col-lg-offset-#{$i} {
     @include bp(large) {
-      margin-left: span($i) + gutter();
+      margin-left: span($i wide);
     }
   }
 }
