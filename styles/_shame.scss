@@ -6,10 +6,14 @@
 
 // testing grids
 .test {
-  background-color: #000;
+  border: 4px solid $black;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  margin: 0 gutter() / 2 1rem;
-  float: left;
   padding: 1rem;
   text-align: center;
+  margin-bottom: 1rem;
+}
+
+.gallery {
+  @include gallery(4 of 12);
 }

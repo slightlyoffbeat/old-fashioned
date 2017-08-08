@@ -1,3 +1,5 @@
+// scss-lint:disable ColorVariable
+
 // ----------------------------------------------------------------------------
 // Grids
 // ----------------------------------------------------------------------------
@@ -7,16 +9,97 @@
 
 
 // Susy Configuration
+
+// Set # of columns
+$_columns: 12;
+
+// Susy Configuration
 $susy: (
-  'columns': susy-repeat(12),
+  'columns': susy-repeat($_columns),
   'gutters': .2,
-  'spread': 'narrow',
-  'container-spread': 'wide',
+  'svg-grid-colors': hsla(180, 50%, 50%, 0.25), //scss-lint-ignore-line
 );
 
+// Container mixin
+@mixin container($config: $susy, $debug: false) {
+  $config: susy-settings($config);
+  $container-spread: map-get($config, 'container-spread');
+
+  @include clearfix;
+  margin: 0 auto;
+  max-width: 100%;
+
+  @if $debug {
+    background: susy-svg-grid($grid: $config) no-repeat scroll;
+  }
+}
+
+// Span Mixin
+@mixin span($span, $config: $susy, $center: false) {
+  width: span($span, $config);
+
+  // if last, then float right
+  @if index($span, 'last') {
+    float: right;
+  } @else if $center == true {
+    margin-left: auto;
+    margin-right: auto;
+  } @else {
+    float: left;
+    margin-right: gutter();
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+// gallery mixin
+@mixin gallery($span, $config: ()) {
+  $grid: susy-compile($span, $config);
+  $span: map-get($grid, 'span');
+  $column-count: length(map-get($grid, 'columns'));
+  $count: floor($column-count / $span);
+  $spread: map-get($grid, 'spread') + 2;
+  $container-spread: map-get($grid, 'container-spread') + 2;
+  $extra: ($container-spread - $spread) * 0.5;
+  $extra-push: su-call('su-gutter', $grid) * $extra;
+
+  float: left;
+  margin-right: -100%;
+
+  @for $n from 1 through ($count) {
+    $nth: unquote('#{$count}n + #{$n}');
+    $location: $span * ($n - 1) + 1;
+
+    &:nth-child(#{$nth}) {
+      $width: susy-compile($span at $location, $grid);
+      width: su-call('su-span', $width);
+
+      @if ($location > 1) {
+        $wide: susy-compile('first' $location - 1 'wide', $grid);
+        clear: none;
+        margin-left: su-call('su-span', $wide) + $extra-push;
+      } @else {
+        clear: both;
+        margin-left: if($extra-push > 0, $extra-push, 0);
+      }
+    }
+  }
+}
+
+
+.row {
+  @include clearfix;
+}
+
+.break {
+  clear: both;
+}
 
 .container {
   @include clearfix;
+  @include container($debug: true);
   margin: 0 auto;
   padding: 0 10px;
 
@@ -40,57 +123,78 @@ $susy: (
 
 // columns for x-small+
 // ex: col-xs-8 or col-xs-3
-@for $i from 0 through 12 {
+@for $i from 1 through $_columns {
   .col-xs-#{$i} {
-    width: 100%;
+    @include span($i);
+
+    &--last {
+      @include span($i last);
+    }
+
+    &--center {
+      @include span($i, $center: true);
+    }
   }
 }
 
 // columns for small+
 // ex: col-sm-8 or col-sm-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-sm-#{$i} {
-    width: span(12);
-
     @include bp(small) {
-      float: left;
-      width: span($i);
+      @include span($i);
+
+      &--last {
+        @include span($i last);
+      }
+
+      &--center {
+        @include span($i, $center: true);
+      }
     }
   }
 }
 
 // columns for medium+
 // ex: col-md-8 or col-md-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-md-#{$i} {
-    width: span(12);
-
     @include bp(medium) {
-      float: left;
-      width: span($i);
-    }
+      @include span($i);
 
+      &--last {
+        @include span($i last);
+      }
+
+      &--center {
+        @include span($i, $center: true);
+      }
+    }
   }
 }
 
 // columns for large+
 // ex: col-lg-8 or col-lg-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-lg-#{$i} {
-    width: span(12);
-
     @include bp(large) {
-      float: left;
-      width: span($i);
-    }
+      @include span($i);
 
+      &--last {
+        @include span($i last);
+      }
+
+      &--center {
+        @include span($i, $center: true);
+      }
+    }
   }
 }
 
 
 // offset (push) columns for x-small+
 // ex: col-xs-offset-8 or col-xs-offset-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-xs-offset-#{$i} {
     margin-left: span($i);
   }
@@ -98,30 +202,30 @@ $susy: (
 
 // offset (push) columns for small+
 // ex: col-sm-offset-8 or col-sm-offset-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-sm-offset-#{$i} {
     @include bp(small) {
-      margin-left: span($i);
+      margin-left: span($i) + gutter();
     }
   }
 }
 
 // offset (push) columns for medium+
 // ex: col-md-offset-8 or col-md-offset-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-md-offset-#{$i} {
     @include bp(medium) {
-      margin-left: span($i);
+      margin-left: span($i) + gutter();
     }
   }
 }
 
 // offset (push) columns for large+
 // ex: col-lg-offset-8 or col-lg-offset-3
-@for $i from 1 through 12 {
+@for $i from 1 through $_columns {
   .col-lg-offset-#{$i} {
     @include bp(large) {
-      margin-left: span($i);
+      margin-left: span($i) + gutter();
     }
   }
 }
